@@ -4,24 +4,34 @@ import java.time.LocalDate;
 
 import com.example.crud_challenge.entities.Client;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+
 public class ClientDTO {
 
     private Long id;
+    
+    @NotBlank(message = "campo requerido")
     private String name;
+
     private String cpf;
+
     private Double income;
-    private LocalDate localDate;
+
+    @PastOrPresent(message = "data de nascimento deve estar no presente ou passado")
+    private LocalDate birthDate;
+
     private int children;
 
     public ClientDTO() {
     }
 
-    public ClientDTO(Long id, String name, String cpf, Double income, LocalDate localDate, int children) {
+    public ClientDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, int children) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.income = income;
-        this.localDate = localDate;
+        this.birthDate = birthDate;
         this.children = children;
     }
 
@@ -30,7 +40,7 @@ public class ClientDTO {
         this.name = client.getName();
         this.cpf = client.getCpf();
         this.income = client.getIncome();
-        this.localDate = client.getLocalDate();
+        this.birthDate = client.getBirthDate();
         this.children = client.getChildren();
     }
 
@@ -50,8 +60,8 @@ public class ClientDTO {
         return income;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
     public int getChildren() {
