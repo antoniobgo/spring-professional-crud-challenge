@@ -27,7 +27,6 @@ public class ClientService {
     public ClientDTO findById(Long id) {
         Client client = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Resource not found"));
-        client = repository.findById(id).get();
         return new ClientDTO(client);
     }
 
